@@ -11,6 +11,6 @@
       ![ss_cmd.png](assets/ss_cmd.png)  
  3.Setelah mendapatkan URL maka akan ditampilkan halaman beranda yang berisi profile dari kelompok kami yaitu, MADEV 2.0
       ![beranda.jpg](assets/beranda.jpg)  
- 4.Pada menu sidebar terdapat page object detection, pada page ini akan ditampilkan hasil dari metode Grad-CAM dengan menampilkan heatmap beserta target class pada    citra. Akhirnya akan diketahui target class yang nilainya paling besar merepresentasikan objek pada citra sehingga dapat divalidasi.  
+ 4.Pada menu sidebar terdapat page object detection, pada page ini akan ditampilkan hasil dari metode Grad-CAM dengan menampilkan   heatmap beserta target class pada    citra. Akhirnya akan diketahui target class yang nilainya paling besar merepresentasikan objek pada citra sehingga dapat divalidasi.  
       ![ss_objek.jpg](assets/ss_objek.jpg)
    
