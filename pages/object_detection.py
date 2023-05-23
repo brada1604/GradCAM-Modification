@@ -342,14 +342,3 @@ show_gradcam("man_bike.jpg",target_class=None)
 
 show_gradcam("teddy_person.jpg",target_class=850) #850 -> Teddy
 show_gradcam("teddy_person.jpg",target_class=None)
-
-show_gradcam("anak_kecil.jpeg",target_class=643) #643 -> mask
-show_gradcam("anak_kecil.jpeg",target_class=None) 
-
-show_gradcam("tni.jpg",target_class=652) #652 -> military
-show_gradcam("tni.jpg",target_class=None) 
-
-cv2_imshow(show_gradcam("author.jpg",target_class=None))  
-
-show_gradcam("payung.jpg",target_class=879) #879 -> umbrella
-show_gradcam("anak_kecil.jpeg",target_class=None) 
