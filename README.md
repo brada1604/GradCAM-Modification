@@ -15,6 +15,8 @@
       ![ss_objek.jpg](assets/ss_objek.jpg)  
  5.Setelah page object detection terdapat page upload image, pada page ini citra berasal dari hasil upload dari komputer. Setelah di upload maka citra akan     ditampilkan dan diproses sehingga menghasilkan hasil yang sama seperti penjelasan pada object detection.  
       ![ss_upload_image.jpg](assets/ss_upload_image.jpg)  
-      ![ss_hasil_image.jpg](assets/ss_hasil_image.jpg)  
-      
+      ![ss_hasil_image.jpg](assets/ss_hasil_image.jpg)    
+ 6.Pada menu sidebar yang paling terakhir adalah page webcam, pada page ini citra berasal dari livecam hasil dari modifikasi selain website streamlit yang   ditampilkan. Setelah memfoto citra maka akan langsung diproses sehingga menghasilkan hasil yang sama seperti penjelasan pada object detection.  
+      ![ss_webcam.jpg](assets/ss_webcam.jpg)  
+      ![ss_hasil_webcam](assets/ss_hasul_webcam.jpg)
    
