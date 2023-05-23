@@ -10,6 +10,7 @@ import numpy as np
 import torch
 from torch.autograd import Function
 from torchvision import models
+from google.colab.patches import cv2_imshow
 
 # Kelas untuk mengekstraksi aktivasi dan mendaftarkan gradien dari lapisan perantara yang ditargetkan
 class FeatureExtractor():
@@ -347,6 +348,8 @@ show_gradcam("anak_kecil.jpeg",target_class=None)
 
 show_gradcam("tni.jpg",target_class=652) #652 -> military
 show_gradcam("tni.jpg",target_class=None) 
+
+cv2_imshow(show_gradcam("author.jpg",target_class=None))  
 
 show_gradcam("payung.jpg",target_class=879) #879 -> umbrella
 show_gradcam("anak_kecil.jpeg",target_class=None) 
