@@ -281,6 +281,8 @@ filename = "author.jpg"
 urllib.request.urlretrieve(url, filename)
 
 import cv2
+import streamlit as st
+from PIL import Image
 
 def show_gradcam(path,target_class=None):
     imagenet_labels = open("imagenet_labels.json", 'rb')
@@ -308,6 +310,7 @@ def show_gradcam(path,target_class=None):
         target_index = None
         target_class = label_names[str(top5_arg[4])].split(',')[0]
     print("target_class: {}".format(target_class))
+    st.write("target_class: {}".format(target_class)) 
     mask = grad_cam(input, target_index)
     gb_model = GuidedBackpropReLUModel(model=model, use_cuda=torch.cuda.is_available())
     gb = gb_model(input, index=target_index)
@@ -321,16 +324,36 @@ def show_gradcam(path,target_class=None):
     text_img = np.zeros(gb.shape)
     text_img = cv2.putText(text_img,model_name,(10,50), font, 0.8,(255,255,255),1,cv2.LINE_AA)
     text_img = cv2.putText(text_img,"target_class: {}".format(target_class),(20//2,150//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
-    text_img = cv2.putText(text_img,'{}: {}'.format(label_names[str(top5_arg[0])],str(rounded_preds[top5_arg[0]])[:5]),(50//2,400//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
-    text_img = cv2.putText(text_img,'{}: {}'.format(label_names[str(top5_arg[1])],str(rounded_preds[top5_arg[1]])[:5]),(50//2,350//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
-    text_img = cv2.putText(text_img,'{}: {}'.format(label_names[str(top5_arg[2])],str(rounded_preds[top5_arg[2]])[:5]),(50//2,300//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
-    text_img = cv2.putText(text_img,'{}: {}'.format(label_names[str(top5_arg[3])],str(rounded_preds[top5_arg[3]])[:5]),(50//2,250//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
-    text_img = cv2.putText(text_img,'{}: {}'.format(label_names[str(top5_arg[4])],str(rounded_preds[top5_arg[4]])[:5]),(50//2,200//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
+    text_img_1 = cv2.putText(text_img,'{}: {}'.format(label_names[str(top5_arg[0])],str(rounded_preds[top5_arg[0]])[:5]),(50//2,400//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
+    text_img_2 = cv2.putText(text_img,'{}: {}'.format(label_names[str(top5_arg[1])],str(rounded_preds[top5_arg[1]])[:5]),(50//2,350//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
+    text_img_3 = cv2.putText(text_img,'{}: {}'.format(label_names[str(top5_arg[2])],str(rounded_preds[top5_arg[2]])[:5]),(50//2,300//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
+    text_img_4 = cv2.putText(text_img,'{}: {}'.format(label_names[str(top5_arg[3])],str(rounded_preds[top5_arg[3]])[:5]),(50//2,250//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
+    text_img_5 = cv2.putText(text_img,'{}: {}'.format(label_names[str(top5_arg[4])],str(rounded_preds[top5_arg[4]])[:5]),(50//2,200//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
     output = np.concatenate((np.uint8(255 * img), gb, cam, cam_gb, text_img), axis=1)
     save_img('combined_output/{}'.format(path), output)
     
-    cv2_imshow(output)    
-    print("-----------------------------")
+    #cv2_imshow(output)
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.image(img_path, caption="IMG", use_column_width=True)
+    with col2:
+        st.image(gb, caption="GB", use_column_width=True)
+    with col3:
+        st.image(cam, caption="Cam", use_column_width=True)
+    with col4:
+        st.image(cam_gb, caption="GB", use_column_width=True)
+    st.write(model_name) 
+    st.write("target_class: {}".format(target_class))
+    st.write('Rank 1 : {}: {}'.format(label_names[str(top5_arg[4])],str(rounded_preds[top5_arg[4]])[:5]))
+    st.write('Rank 2 : {}: {}'.format(label_names[str(top5_arg[3])],str(rounded_preds[top5_arg[3]])[:5]))
+    st.write('Rank 3 : {}: {}'.format(label_names[str(top5_arg[2])],str(rounded_preds[top5_arg[2]])[:5]))
+    st.write('Rank 4 : {}: {}'.format(label_names[str(top5_arg[1])],str(rounded_preds[top5_arg[1]])[:5]))
+    st.write('Rank 5 : {}: {}'.format(label_names[str(top5_arg[0])],str(rounded_preds[top5_arg[0]])[:5]))
+    st.write("-----------------------------")    
+    #print("-----------------------------")
+
+st.header("TUBES PCD | MADEV 2.0")
+st.title("CONTOH PENGGUNAAN")
 
 show_gradcam("author.jpg",target_class=559) #559 -> folding chair
 show_gradcam("author.jpg",target_class=418) #418 -> Ballpoint pen
@@ -342,3 +365,4 @@ show_gradcam("man_bike.jpg",target_class=None)
 
 show_gradcam("teddy_person.jpg",target_class=850) #850 -> Teddy
 show_gradcam("teddy_person.jpg",target_class=None)
+
