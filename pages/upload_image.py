@@ -329,7 +329,7 @@ if uploaded_file is not None:
     # Melakukan proses selanjutnya menggunakan file gambar sementara
     show_gradcam(temp_file, target_class=None)
 
-    st.text("target : pemain sepakbola")
-    show_gradcam(temp_file, target_class=981)
+    #st.text("target : pemain sepakbola")
+    #show_gradcam(temp_file, target_class=981)
     # Hapus file gambar sementara setelah selesai
     # os.remove(temp_file)
